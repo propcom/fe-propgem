@@ -9,10 +9,17 @@ What this plugin does
 - Provides a simple way of implementing AJAX Galleries, Events and Menus
 - Includes built in 'Viewers' for each of the aformentioned
 
+Dependencies
+------------
+
+- fuel-propgem https://github.com/propcom/fuel-propgem (FuelPHP Module to support jQuery)
+- fuel-dbprocs https://github.com/propcom/fuel-dbprocs (FuelPHP Package)
+- fancybox (for the gallery) http://fancybox.net/
+
 Features
 --------
 
-- Easy implementation
+- Easy implementation (compared to coding from scratch)
 - Stops people using that shitty code I wrote a long time ago
 
 
@@ -21,7 +28,8 @@ Usage
 
 - How you initialize propgrm depends on which 'GEM' you are using...
 
-- To initialize a basic gallery
+Gallery Viewer
+--------------
 
 <pre>
   $('div#wrapping-element').propgem('gallery');
@@ -83,10 +91,77 @@ Callbacks
  
   - the *this* keyword is a reference to the images loaded (you can use this to re-init fancybox)
     
-Methods
+
+Events Viewer
+--------------
+
+<pre>
+  $('div#wrapping-element').propgem('events');
+</pre>
+
+This will set events with the default options and will include a month nav.
+
+- Or you can set some options and callbacks like so.
+
+<pre>
+  $('div#wrapping-element').propgem('events', {
+    'select_element'  : 'nav',
+    'wrappers'    : {
+      'parent' : {
+        'element' : 'section',
+        'classes' : ['twelve', 'columns']
+      },
+      'item'   : {
+        'element' : 'article',
+        'classes' : ['six', 'columns', 'event']
+      }
+    },
+    'loading_element'  : '.loading-element-selector'
+  });
+</pre>
+
+
+Options
 -----------------------
 
-  - coming soon
+  - **select_element**  : *string* | which selector to display, currently 'select' or 'nav'
+  - **wrappers**
+  - - - **parent**
+  - - - - - **element** : *string* | the element type to wrap the events in e.g. 'section'
+  - - - - - **classes** : *array*  | an array of class names to add to the parent wrapper
+  - - - **item**
+  - - - - - **element** : *string* | the element type of each item e.g. 'article'
+  - - - - - **classes** : *array*  | an array of class names to add to each event
+  - **loading_element** : *string* | the selector of the element to use a preloader element  
+
+
+Menu Viewer
+--------------
+
+<pre>
+  $('div#wrapping-element').propgem('menu');
+</pre>
+
+This will set menus with the default options and will include a menu drop down selector.
+
+- Or you can set some options and callbacks like so.
+
+<pre>
+  $('div#wrapping-element').propgem('menu', {
+    'default_menu'  : 4013,
+    'select_element' : 'select',
+    'loading_element'  : '.loading-element-selector'
+  });
+</pre>
+
+
+Options
+-----------------------
+
+  - **default_menu**    : *string* | the default menu to display when plugin initializes
+  - **select_element**  : *string* | which selector to display, currently 'select' or 'nav'
+  - **loading_element** : *string* | the selector of the element to use a preloader element  
+  
 
 All files contained within this repository are subject to the GNU GPL v3, please follow this link for a description:-
 http://opensource.org/licenses/gpl-3.0
