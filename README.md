@@ -13,7 +13,14 @@ Dependencies
 ------------
 
 - fuel-propgem https://github.com/propcom/fuel-propgem (FuelPHP Module to support jQuery)
+*You can either add this as a submodule via git (recommended) or just copy it into your fuel/app/modules/ folder, 
+you must also include 'propgem' in the 'always_load' modules section of the fuel/app/config file*
+
 - fuel-dbprocs https://github.com/propcom/fuel-dbprocs (FuelPHP Package)
+*You can either add this as a submodule via git (recommended) or just copy it into your fuel/packages/ folder, 
+you must also include 'dbprocs' in the 'always_load' packages section of the fuel/app/config file amd set the 'site_id'
+in the dbprocs config file*
+
 - fancybox (for the gallery) http://fancybox.net/
 
 Features
