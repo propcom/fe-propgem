@@ -1,4 +1,8 @@
-propgem v1.0
+propgem v1.1
+============
+
+V1.1 Update - Added in 'date' option to show either 'all' or 'upcoming' events - See usage below for more details. Also calls tinyscrollbar on events loading.
+
 ============
 
 A jQuery Plugin with a restful back-end to provide easy implement of AJAX Galleries, Events and Menus
@@ -123,7 +127,8 @@ This will set events with the default options and will include a month nav.
         'classes' : ['six', 'columns', 'event']
       }
     },
-    'loading_element'  : '.loading-element-selector'
+    'loading_element'  : '.loading-element-selector',
+    'date' : 'all'
   });
 </pre>
 
@@ -140,6 +145,7 @@ Options
   - - - - - **element** : *string* | the element type of each item e.g. 'article'
   - - - - - **classes** : *array*  | an array of class names to add to each event
   - **loading_element** : *string* | the selector of the element to use a preloader element  
+  - **date** : *string* | Use either 'all' or 'upcoming'
 
 
 Menu Viewer

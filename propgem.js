@@ -1,7 +1,8 @@
 /*
 	propgem: developed by Anthony Armstrong
-		version: 1.0.0
-		last modified: 2013-11-06
+		updated by Nicholas Carter
+		version: 1.1.0
+		last modified: 2014-04-29
 */
 
 (function($) {
@@ -735,6 +736,7 @@
 		 		}
 		 	},
 		 	'loading_element' : false,
+		 	'date' : 'all'
 	    }, options, {'hook' : $hook});  
 
 	    // attach settings to object
@@ -826,9 +828,7 @@
 					self.hook.append('<p class="error">' + data.error + '</p>');
 					self.hide_loader();
 		  		} else {
-		  			
 		  			self.build_events(data);
-		  			
 		  		}
 		  	},
 		  	error : function(jq_xhr, status, error) {
@@ -837,7 +837,9 @@
 		  	},
 		  	complete: function() {
 	  			self.hide_loader();
-  				$('#gem-event-' + self.current_id).fadeTo(300, 1);	
+  				$('#gem-event-' + self.current_id).fadeTo(300, , function(){
+  					$(".main-content").tinyscrollbar_update();
+  				});	
 		  	}
 		});
 
@@ -885,11 +887,57 @@
 						}
 					}
 
-					// build up event body
-					$event_title = $('<h1 class="title">' + event_data.event_name + '</h1>');
-					$event_date  = $('<small class="date">' + event_data.event_day + '/' + event_data.event_month + '/' + event_data.event_year + '</small>');
-					$event_desc  = $('<p class="description">' + event_data.event_desc + '</p>');
-					$event_flyer = event_data.event_flyer != null ? $('<img />') : null;
+					if (this.date === 'upcoming') {
+						var currentDate = new Date();
+						var day = currentDate.getDate();
+						var month = currentDate.getMonth() + 1;
+
+						if (event_data.event_month == month) {
+							if (event_data.event_day < day) {
+
+							} else {
+								// build up event body
+								$event_title = $('<h1 class="title">' + event_data.event_name + '</h1>');
+								$event_date = $('<small class="date">' + event_data.event_day + '/' + event_data.event_month + '/' + event_data.event_year + '</small>');
+								$event_desc = $('<p class="description">' + event_data.event_desc + '</p>');
+								$event_flyer = null;
+
+								if (event_data.event_flyer != null) {
+									if (event_data.event_flyer.length > 0) {
+										$event_flyer = $('<img />');
+									}
+								}
+
+								$item_wrap.append($event_title, $event_date, $event_desc);
+
+								if ($event_flyer != null) {
+									$event_flyer.attr({
+										'src': 'http://crmx.propeller.me.uk/event_flyers/' + event_data.event_flyer,
+										'alt': event_data.event_name,
+										'class': 'flyer'
+									});
+
+									$item_wrap.append($event_flyer);
+								}
+
+								$wrapper.append($item_wrap);
+
+							}
+						} else if (event_data.event_month > month) {
+							// build up event body
+							$event_title = $('<h1 class="title">' + event_data.event_name + '</h1>');
+							$event_date = $('<small class="date">' + event_data.event_day + '/' + event_data.event_month + '/' + event_data.event_year + '</small>');
+							$event_desc = $('<p class="description">' + event_data.event_desc + '</p>');
+							$event_flyer = null;
+							if (event_data.event_flyer != null) {
+								if (event_data.event_flyer.length > 0) {
+									$event_flyer = $('<img />');
+								}
+							}
+						}
+					}
+								
+
 
 					$item_wrap.append($event_title, $event_date, $event_desc);
 
@@ -899,22 +947,12 @@
 							'alt' : event_data.event_name,
 							'class' : 'flyer'
 						});
-
 						$item_wrap.append($event_flyer);
 					}
-
 					$wrapper.append($item_wrap);
-
 				}
-
 			}
-			
 		}
-
 		this.hook.append($wrapper);
-
 	};
-
-
-
 })(jQuery);
