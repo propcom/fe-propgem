@@ -23,7 +23,7 @@
         "propcom"
     ],
 
-    "license": "Private",
+    "license": "Public",
     "homepage": "https://github.com/propcom/propgem.git",
 
     "install" : {
