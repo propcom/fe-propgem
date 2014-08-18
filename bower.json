@@ -9,7 +9,7 @@
     "main": "propgem.js",
     "repository": {
         "type" : "git",
-        "url" : "https://github.com/WsCandy/zRSv2.git"
+        "url" : "https://github.com/propcom/propgem.git"
     },
 
     "keywords": [
@@ -27,6 +27,6 @@
     "homepage": "https://github.com/propcom/propgem.git",
 
     "install" : {
-        "propgem.js" : "httpdocs/assets/js/lib"
+        "js/propgem.js" : "httpdocs/assets/js/lib"
     }
 }
