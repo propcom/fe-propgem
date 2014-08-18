@@ -1,0 +1,32 @@
+{
+    "name": "Propgem",
+    "authors": [
+        "Anthony Armstrong",
+        "Nicholas Carter"
+    ],
+
+    "description": "Propgem Package",
+    "main": "propgem.js",
+    "repository": {
+        "type" : "git",
+        "url" : "https://github.com/WsCandy/zRSv2.git"
+    },
+
+    "keywords": [
+        "propgem",
+        "menus",
+        "events",
+        "gallery",
+        "Propeller",
+        "propcomm",
+        "propeller",
+        "propcom"
+    ],
+
+    "license": "Private",
+    "homepage": "https://github.com/propcom/propgem.git",
+
+    "install" : {
+        "propgem.js" : "httpdocs/assets/js/lib"
+    }
+}
